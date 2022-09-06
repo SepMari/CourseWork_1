@@ -6,29 +6,42 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Employee ivanov = new Employee("Ivanov Ivan Petrovich", 1, 50_000);
-        Employee sidorov = new Employee("Sidorov Ivan Petrovich", 2, 80_000);
-        Employee petrova = new Employee("Petrova Inna Ivanovna", 3, 130_000);
-
-        employees[0] = ivanov;
-        employees[1] = sidorov;
-        employees[2] = petrova;
+        employees[0] = new Employee("Ivanov Ivan Petrovich", 1, 50_000);
+        employees[1] = new Employee("Sidorov Ivan Petrovich", 2, 80_000);
+        employees[2] = new Employee("Petrova Inna Ivanovna", 3, 130_000);
 
 
     }
 
-    public static void allEmployees() {
-        for (Employee employee : employees) {
-            System.out.println(employee);
+    public static boolean addEmployees(Employee employee) {
+        for (int i = 0; i < employees.length; i++){
+            if (employees[i] == null){
+                employees[i] = employee;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void printAllEmployees() {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                System.out.println(employees[i]);
+            } else break;
         }
     }
-    public static void allFullName() {
+
+    public static void printAllFullName() {
         for (Employee fullName : employees) {
-            System.out.println(fullName.getFullName());
+            for (int i = 0; i < employees.length; i++) {
+                if (employees[i] != null) {
+                    System.out.println(fullName.getFullName());
+                } else break;
+            }
         }
     }
 
-    public static int allSalary() {
+    public static int allSalaryEmployeeReturn() {
         int sum = 0;
         for (Employee employee : employees) {
             sum += employee.getSalary();
@@ -36,7 +49,7 @@ public class Main {
         return sum;
     }
 
-    public static int minSalary() {
+    public static int minSalaryEmployeeReturn() {
         int minSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             if (minSalary > employees[i].getSalary()) {
@@ -46,22 +59,29 @@ public class Main {
         return minSalary;
     }
 
-    public static int maxSalary() {
+    public static int searchMaxSalaryEmployee() {
         int maxSalary = employees[0].getSalary();
+
         for (int i = 0; i < employees.length; i++) {
-            if (maxSalary < employees[i].getSalary()) {
-                maxSalary = employees[i].getSalary();
-            }
+            if (employees[i] != null) {
+                if (maxSalary < employees[i].getSalary()) {
+                    maxSalary = employees[i].getSalary();
+                }
+            } break;
         }
         return maxSalary;
     }
 
-    public static int mediumSalary() {
-        double mediumSalary = 0;
-        for (Employee employee : employees) {
-            mediumSalary += (double) employee.getSalary();
+    public static int mediumSalaryEmployeeReturn() {
+        double mediumSalary = allSalaryEmployeeReturn();
+        int employeesLength = 0;
+
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                employeesLength++;
+            }
         }
-        mediumSalary = mediumSalary / employees.length;
+        mediumSalary = mediumSalary / employeesLength;
         return (int) mediumSalary;
     }
 

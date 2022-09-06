@@ -3,13 +3,15 @@ public class Employee {
     private String fullName;
     private int group;
     private int salary;
-    static int id;
+    private static int id;
+    private static int count;
 
 
     public Employee(String fullName, int group, int salary) {
         this.fullName = fullName;
         this.group = group;
         this.salary = salary;
+        this.id = count++;
     }
 
 
@@ -19,7 +21,6 @@ public class Employee {
                 "fullName = '" + fullName + '\'' +
                 ", group = " + group +
                 ", salary = " + salary +
-                ", id = " + id++ +
                 '}';
     }
 
@@ -46,6 +47,7 @@ public class Employee {
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
 }
 
 
