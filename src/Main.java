@@ -9,22 +9,27 @@ public class Main {
         employees[0] = new Employee("Ivanov Ivan Petrovich", 1, 50_000);
         employees[1] = new Employee("Sidorov Ivan Petrovich", 2, 80_000);
         employees[2] = new Employee("Petrova Inna Ivanovna", 3, 130_000);
+        employees[3] = null;
+        employees[4] = new Employee("Ivanova Anna Alexandrovna", 1, 180_000);
 
 
     }
 
     public static boolean addEmployees(Employee employee) {
-        for (int i = 0; i < employees.length; i++){
-            if (employees[i] == null){
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] == null) {
                 employees[i] = employee;
                 return true;
-            }
+            } else
+                System.out.println("Массив сотрудников заполнен. Увеличьте массив или удалите старого сотрудника");
         }
         return false;
     }
 
     public static void printAllEmployees() {
         for (int i = 0; i < employees.length; i++) {
+            if (employees[i] == null)
+                continue;
             if (employees[i] != null) {
                 System.out.println(employees[i]);
             } else break;
@@ -34,14 +39,16 @@ public class Main {
     public static void printAllFullName() {
         for (Employee fullName : employees) {
             for (int i = 0; i < employees.length; i++) {
+                if (employees[i] == null)
+                    continue;
                 if (employees[i] != null) {
                     System.out.println(fullName.getFullName());
-                } else break;
+                }
             }
         }
     }
 
-    public static int allSalaryEmployeeReturn() {
+    public static int getAllSalaryEmployee() {
         int sum = 0;
         for (Employee employee : employees) {
             sum += employee.getSalary();
@@ -49,7 +56,7 @@ public class Main {
         return sum;
     }
 
-    public static int minSalaryEmployeeReturn() {
+    public static int getMinSalaryEmployee() {
         int minSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             if (minSalary > employees[i].getSalary()) {
@@ -59,34 +66,36 @@ public class Main {
         return minSalary;
     }
 
-    public static int searchMaxSalaryEmployee() {
+    public static int getMaxSalaryEmployee() {
         int maxSalary = employees[0].getSalary();
 
         for (int i = 0; i < employees.length; i++) {
+            if (employees[i] == null)
+                continue;
             if (employees[i] != null) {
                 if (maxSalary < employees[i].getSalary()) {
                     maxSalary = employees[i].getSalary();
                 }
-            } break;
+            }
         }
         return maxSalary;
     }
 
-    public static int mediumSalaryEmployeeReturn() {
-        double mediumSalary = allSalaryEmployeeReturn();
-        int employeesLength = 0;
+        public static int getMediumSalaryEmployee () {
+            double mediumSalary = getAllSalaryEmployee();
+            int employeesLength = 0;
 
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] != null) {
-                employeesLength++;
+            for (int i = 0; i < employees.length; i++) {
+                if (employees[i] != null) {
+                    employeesLength++;
+                }
             }
+            mediumSalary = mediumSalary / employeesLength;
+            return (int) mediumSalary;
         }
-        mediumSalary = mediumSalary / employeesLength;
-        return (int) mediumSalary;
+
+
     }
-
-
-}
 
 
 /*

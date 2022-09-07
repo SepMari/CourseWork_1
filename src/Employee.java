@@ -3,7 +3,7 @@ public class Employee {
     private String fullName;
     private int group;
     private int salary;
-    private static int id;
+    private int id;
     private static int count;
 
 
