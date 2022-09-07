@@ -1,101 +1,54 @@
-import java.util.Arrays;
+public class Employee {
 
-public class Main {
-
-    private static Employee[] employees = new Employee[10];
-
-    public static void main(String[] args) {
-
-        employees[0] = new Employee("Ivanov Ivan Petrovich", 1, 50_000);
-        employees[1] = new Employee("Sidorov Ivan Petrovich", 2, 80_000);
-        employees[2] = new Employee("Petrova Inna Ivanovna", 3, 130_000);
-        employees[3] = null;
-        employees[4] = new Employee("Ivanova Anna Alexandrovna", 1, 180_000);
+    private String fullName;
+    private int group;
+    private int salary;
+    private int id;
+    private static int count;
 
 
+    public Employee(String fullName, int group, int salary) {
+        this.fullName = fullName;
+        this.group = group;
+        this.salary = salary;
+        this.id = count++;
     }
 
-    public static boolean addEmployees(Employee employee) {
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] == null) {
-                employees[i] = employee;
-                return true;
-            } else
-                System.out.println("Массив сотрудников заполнен. Увеличьте массив или удалите старого сотрудника");
-        }
-        return false;
+
+    @Override
+    public String toString() {
+        return "Employee {" +
+                "fullName = '" + fullName + '\'' +
+                ", group = " + group +
+                ", salary = " + salary +
+                '}';
     }
 
-    public static void printAllEmployees() {
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] == null)
-                continue;
-            if (employees[i] != null) {
-                System.out.println(employees[i]);
-            } else break;
-        }
+    public String getFullName() {
+        return fullName;
     }
 
-    public static void printAllFullName() {
-        for (Employee fullName : employees) {
-            for (int i = 0; i < employees.length; i++) {
-                if (employees[i] == null)
-                    continue;
-                if (employees[i] != null) {
-                    System.out.println(fullName.getFullName());
-                }
-            }
-        }
+    public int getGroup() {
+        return group;
     }
 
-    public static int getAllSalaryEmployee() {
-        int sum = 0;
-        for (Employee employee : employees) {
-            sum += employee.getSalary();
-        }
-        return sum;
+    public int getSalary() {
+        return salary;
     }
 
-    public static int getMinSalaryEmployee() {
-        int minSalary = employees[0].getSalary();
-        for (int i = 0; i < employees.length; i++) {
-            if (minSalary > employees[i].getSalary()) {
-                minSalary = employees[i].getSalary();
-            }
-        }
-        return minSalary;
+    public int getId() {
+        return id;
     }
 
-    public static int getMaxSalaryEmployee() {
-        int maxSalary = employees[0].getSalary();
-
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i] == null)
-                continue;
-            if (employees[i] != null) {
-                if (maxSalary < employees[i].getSalary()) {
-                    maxSalary = employees[i].getSalary();
-                }
-            }
-        }
-        return maxSalary;
+    public void setGroup(int group) {
+        this.group = group;
     }
 
-        public static int getMediumSalaryEmployee () {
-            double mediumSalary = getAllSalaryEmployee();
-            int employeesLength = 0;
-
-            for (int i = 0; i < employees.length; i++) {
-                if (employees[i] != null) {
-                    employeesLength++;
-                }
-            }
-            mediumSalary = mediumSalary / employeesLength;
-            return (int) mediumSalary;
-        }
-
-
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
+
+}
 
 
 /*
